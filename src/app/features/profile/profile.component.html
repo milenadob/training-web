@@ -1,0 +1,57 @@
+<div class="container">
+	<mat-card id="registerCard">
+        <h4  class="text-center">Update profile</h4>
+        <form>
+            <mat-form-field class="input">
+                <mat-label>Login</mat-label>
+                <input type="text" matInput placeholder="Username" required readonly>
+            </mat-form-field>
+        
+            <mat-form-field class="input">
+                <mat-label>New password</mat-label>
+                <input type="password" matInput placeholder="Password" required>
+            </mat-form-field>
+
+            <mat-form-field class="input" >
+                <mat-label>Repeat password</mat-label>
+                <input type="password" matInput placeholder="Password" required>
+            </mat-form-field>
+
+            <mat-form-field class="input" >
+                <mat-label>Height</mat-label>
+                <span matSuffix>&nbsp; cm</span>
+                <input type="number" matInput placeholder="Password" required>
+            </mat-form-field>
+
+            <mat-form-field class="input" >
+                <mat-label>Weight</mat-label>
+                <span matSuffix>&nbsp; kg</span>
+                <input type="number" matInput placeholder="Password" required>
+            </mat-form-field>
+
+            <mat-form-field class="input" required>
+                <mat-label>Sex</mat-label>
+                <select matNativeControl required>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
+              </mat-form-field>
+
+                                   
+            <mat-form-field class="datepicker">
+                <mat-label>Choose your birthdate</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+              
+              
+            <div class="text-center">
+                <button type="submit" color="primary" mat-raised-button>Update data</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
+
