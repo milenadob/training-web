@@ -1,15 +1,15 @@
 <div class="container">
 	<mat-card id="registerCard">
         <h4  class="text-center">Login</h4>
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>
-                <input type="text" matInput placeholder="Username" required readonly>
+                <input type="text" matInput placeholder="Username" required formControlName="username">
             </mat-form-field>
         
             <mat-form-field class="input">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput placeholder="Password" required>
+                <input type="password" matInput placeholder="Password" required formControlName="password">
             </mat-form-field>
               
             <div class="text-center">
