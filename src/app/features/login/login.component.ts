@@ -39,17 +39,18 @@ export class LoginComponent implements OnInit {
 
       this.usersService.login(new UserLogin(this.loginForm.value.username as string, 
         this.loginForm.value.password as string))
-        .subscribe(
-          (res: Response) => {
+        .subscribe({
+          next: (res: Response) => {
             this.localService.saveData('authorization', res.headers.get('authorization') as string);
             this.localService.saveData('username', this.loginForm.value.username as string);
             this.router.navigate([this.HOME_URL]); 
           },
-          (error: any) => {
-            console.log(error)
+          error: (error: any) => { 
             this.alert = true;
             this.alertMessage = error.error;
-        })
+          },
+          complete: () => { }
+        });
     }
   }
 }

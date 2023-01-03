@@ -1,8 +1,12 @@
 
 <mat-toolbar>Training web
     <div>
+        <button  mat-button  [routerLink]="'/login'">
+            <mat-icon>logout</mat-icon>
+        </button>
+        <a mat-button [routerLink]="'/home'"> Home </a>
         <a mat-button [routerLink]="'/profile'"> Profile </a>
-      </div>
+    </div>
 </mat-toolbar>
 
 <br/>

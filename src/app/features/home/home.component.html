@@ -23,7 +23,35 @@
     
             <ng-container matColumnDef="additionalInfo">
                 <th mat-header-cell *matHeaderCellDef> Additional info </th>
-                <td mat-cell *matCellDef="let element"> {{element.additionalInfo}} </td>
+                <td mat-cell *matCellDef="let element"> 
+                    <mat-form-field *ngIf="element.isEdit">
+                        <input matInput type="text" [(ngModel)]="element.additionalInfo">
+                    </mat-form-field>
+                    <p *ngIf="!element.isEdit">
+                        {{element.additionalInfo}}
+                    </p>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <button mat-icon-button *ngIf="element.isEdit" (click)="save(element)" color="primary">
+                            <mat-icon>check_circle</mat-icon>
+                        </button>
+
+                    <button mat-icon-button *ngIf="element.isEdit" (click)="reload()" color="warn">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+
+                    <button mat-icon-button *ngIf="!element.isEdit" (click)="element.isEdit = true" color="primary">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+
+                    <button mat-icon-button *ngIf="!element.isEdit" (click)="delete(element)" color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
             </ng-container>
         
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

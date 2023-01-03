@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { LocalService } from './local-serivce';
 import { AuthorizationService } from './authorization-servicer';
+import { TrainingUpdate } from '../model/training-update';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,24 @@ export class TrainingService {
         return this.http.get<Training[]>(`${this.trainingUrl}/user/${username}`, {headers: header})
             .pipe(
             catchError(this.handleError<Training[]>('getAllTrainings', []))
+          );
+    }
+
+    update(training: TrainingUpdate, trainingId: number): Observable<any> {
+        let header = new HttpHeaders({ "Authorization": "Bearer " + this.authoriozationService.getAuthKey() as string});
+        
+        return this.http.put<any>(`${this.trainingUrl}/${trainingId}`, training, {headers: header})
+            .pipe(
+            catchError(this.handleError<any>('getAllTrainings', []))
+          );
+    }
+
+    delete(trainingId: number): Observable<any> {
+        let header = new HttpHeaders({ "Authorization": "Bearer " + this.authoriozationService.getAuthKey() as string});
+        
+        return this.http.delete<any>(`${this.trainingUrl}/${trainingId}`, {headers: header})
+            .pipe(
+            catchError(this.handleError<any>('getAllTrainings', []))
           );
     }
     
