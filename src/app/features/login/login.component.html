@@ -1,6 +1,7 @@
 <div class="container">
 	<mat-card id="registerCard">
         <h4  class="text-center">Login</h4>
+        <div class="alert alert-danger" role="alert" *ngIf="alert">Wrong username or password</div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>
@@ -16,6 +17,11 @@
                 <button type="submit" color="primary" mat-raised-button>Sign in</button>
             </div>
         </form>
+
+        <div class="text-center">
+            <p>Not a member? <a href="/register">Register</a></p>
+        </div>
+
     </mat-card>
 </div>
 
