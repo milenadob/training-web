@@ -30,7 +30,7 @@ export class TrainingService {
     
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            console.error(error); // log to console instead
+            console.error(error);
             this.localService.clearData();
             this.router.navigate(['/login'])
             return of(result as T);

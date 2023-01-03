@@ -1,8 +1,21 @@
 <div class="container">
 	<mat-card id="registerCard">
         <h4  class="text-center">Login</h4>
-        <div class="alert alert-danger" role="alert" *ngIf="alert">{{alertMessage}}</div>
-        <div class="alert alert-primary" role="alert" *ngIf="success">Successfully signed up!</div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="alert">
+            <button mat-icon-button (click)="alert=false;">
+                <mat-icon>close</mat-icon>
+            </button>
+            {{alertMessage}}
+        </div>
+
+        <div class="alert alert-primary" role="alert" *ngIf="success">
+            <button mat-icon-button (click)="success=false;">
+                <mat-icon>close</mat-icon>
+              </button>
+              Successfully signed up
+        </div>
+
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>

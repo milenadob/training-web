@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators,  } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/core/model/user';
+import { UserRegister } from 'src/app/core/model/user-register';
 import { UsersService } from 'src/app/core/services/users-service';
 
 @Component({
@@ -41,21 +41,24 @@ export class RegisterComponent {
     if (this.registerForm.status == 'VALID') {
 
       this.usersService.register(
-        new User(this.registerForm.value.username as string, 
+        new UserRegister(this.registerForm.value.username as string, 
           this.registerForm.value.password as string,
           Number(this.registerForm.value.height),
           Number(this.registerForm.value.weight),
           this.registerForm.value.sex as string,
           this.registerForm.value.birthday as string))
-        .subscribe(
-          () => {
-            this.router.navigate(['/login'], { queryParams: { register: 'true' } }); 
-          },
-          (error: any) => {
-            console.log(error)
-            this.alert = true;
-            this.alertMessage = error.error;
-          })
+          .subscribe(
+            {
+              next: () => {
+                this.router.navigate(['/login'], { queryParams: { register: 'true' } }); 
+              },
+              error: (error: any) => { 
+                this.alert = true;
+                this.alertMessage = error.error;
+              },
+              complete: () => { }
+            }
+          );
     }
   }
 

@@ -3,7 +3,12 @@
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <h4  class="text-center">Register</h4>
 
-            <div class="alert alert-danger" role="alert" *ngIf="alert">{{alertMessage}}</div>
+            <div class="alert alert-danger" role="alert" *ngIf="alert">
+                <button mat-icon-button color="primary" (click)="alert=false;">
+                    <mat-icon>close</mat-icon>
+                </button>
+                {{alertMessage}}
+            </div>
 
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>

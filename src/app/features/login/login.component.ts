@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.localService.clearData();
     this.route.queryParams.subscribe(params => {
       this.success = params['register'] == 'true';
   });

@@ -1,17 +1,27 @@
 <div class="container">
 	<mat-card id="registerCard">
         <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
-            <h4  class="text-center">Register</h4>
+            <h4  class="text-center">Update</h4>
+
+            <div class="alert alert-danger" role="alert" *ngIf="alert">
+                <button mat-icon-button (click)="alert=false;">
+                    <mat-icon>close</mat-icon>
+                </button>
+                {{alertMessage}}
+            </div>
+
+            <div class="alert alert-primary" role="alert" *ngIf="success">
+                <button mat-icon-button (click)="success=false;">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                  Successfully updated
+            </div>
+
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>
-                <input type="text" matInput required formControlName="username">
+                <input type="text" matInput readonly formControlName="username">
             </mat-form-field>
-        
-            <mat-form-field class="input">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput required formControlName="password">
-            </mat-form-field>
-
+    
             <mat-form-field class="input" >
                 <mat-label>Height</mat-label>
                 <span matSuffix>&nbsp; cm</span>
@@ -43,9 +53,14 @@
                 <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
             </div>
               
-              
             <div class="text-center">
-                <button type="submit" color="primary" mat-raised-button>Sign up</button>
+                <div class="p-3 btn-group mr-2">
+                    <button class="text-center col" type="submit" color="primary" mat-raised-button>Update</button>
+                </div>
+
+                <div class="p-3 btn-group mr-2">
+                    <button class="text-center col" type="button" (click)="delete()" color="warn" mat-raised-button>Delete</button>
+                </div>
             </div>
 
             <div class="text-center">
