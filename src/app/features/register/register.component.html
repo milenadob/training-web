@@ -2,6 +2,9 @@
 	<mat-card id="registerCard">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <h4  class="text-center">Register</h4>
+
+            <div class="alert alert-danger" role="alert" *ngIf="alert">{{alertMessage}}</div>
+
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>
                 <input type="text" matInput required formControlName="username">
@@ -10,6 +13,7 @@
             <mat-form-field class="input">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput required formControlName="password">
+                <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">Must be at least 6 characters</mat-error>
             </mat-form-field>
 
             <mat-form-field class="input" >

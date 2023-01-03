@@ -13,9 +13,15 @@ export class RegisterComponent {
   minDate: Date;
   maxDate: Date;
 
+  alert = false;
+  alertMessage = "";
+
   registerForm = this.fb.group({
     username: ['', Validators.required],
-    password: ['', Validators.required],
+    password: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(6)]
+    )],
     height: ['', Validators.required],
     weight: ['', Validators.required],
     sex: ['', Validators.required],
@@ -41,9 +47,15 @@ export class RegisterComponent {
           Number(this.registerForm.value.weight),
           this.registerForm.value.sex as string,
           this.registerForm.value.birthday as string))
-        .subscribe(() => {
-          this.router.navigate(['/login']); 
-        })
+        .subscribe(
+          () => {
+            this.router.navigate(['/login'], { queryParams: { register: 'true' } }); 
+          },
+          (error: any) => {
+            console.log(error)
+            this.alert = true;
+            this.alertMessage = error.error;
+          })
     }
   }
 

@@ -1,7 +1,8 @@
 <div class="container">
 	<mat-card id="registerCard">
         <h4  class="text-center">Login</h4>
-        <div class="alert alert-danger" role="alert" *ngIf="alert">Wrong username or password</div>
+        <div class="alert alert-danger" role="alert" *ngIf="alert">{{alertMessage}}</div>
+        <div class="alert alert-primary" role="alert" *ngIf="success">Successfully signed up!</div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="input">
                 <mat-label>Login</mat-label>
